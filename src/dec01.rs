@@ -35,14 +35,14 @@ mod tests {
         assert_eq!(mass_to_fuel(12), 2);
         assert_eq!(mass_to_fuel(14), 2);
         assert_eq!(mass_to_fuel(1969), 654);
-        assert_eq!(mass_to_fuel(100756), 33583);
+        assert_eq!(mass_to_fuel(100_756), 33_583);
     }
 
     #[test]
     fn test_fuel_iterator() {
         assert_eq!(FuelIterator(14).sum::<usize>(), 2);
         assert_eq!(FuelIterator(1969).sum::<usize>(), 966);
-        assert_eq!(FuelIterator(100756).sum::<usize>(), 50346);
+        assert_eq!(FuelIterator(100_756).sum::<usize>(), 50_346);
     }
 
     #[test]
@@ -51,7 +51,7 @@ mod tests {
             .map(mass_to_fuel)
             .sum();
 
-        assert_eq!(sum, 3087896);
+        assert_eq!(sum, 3_087_896);
     }
 
 
@@ -61,6 +61,6 @@ mod tests {
             .flat_map(|m| FuelIterator(m))
             .sum();
 
-        assert_eq!(sum, 4628989);
+        assert_eq!(sum, 4_628_989);
     }
 }
