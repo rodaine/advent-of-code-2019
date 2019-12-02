@@ -11,7 +11,7 @@ fn read_input(name: &str) -> BufReader<File> {
     path.push(name);
 
     let file = File::open(&path)
-        .expect(&format!("unable to open input file: {:?}", path));
+        .unwrap_or_else(|err| panic!("unable to open input file {:?}: {}", path, err));
 
     BufReader::new(file)
 }
