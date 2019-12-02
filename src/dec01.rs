@@ -58,7 +58,7 @@ mod tests {
     #[test]
     fn part2() {
         let sum: usize = input_to_mass("dec01.txt")
-            .flat_map(|m| FuelIterator(m))
+            .flat_map(FuelIterator)
             .sum();
 
         assert_eq!(sum, 4_628_989);
