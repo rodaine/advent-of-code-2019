@@ -1,8 +1,10 @@
+#![allow(dead_code)]
+
 use std::io::BufReader;
 use std::fs::File;
 use std::path::PathBuf;
 
-mod dec1;
+mod dec01;
 
 fn read_input(name: &str) -> BufReader<File> {
     let mut path = PathBuf::from("inputs");

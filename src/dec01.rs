@@ -19,10 +19,10 @@ impl Iterator for FuelIterator {
 
     fn next(&mut self) -> Option<Self::Item> {
         self.0 = mass_to_fuel(self.0);
-        if self.0 == 0 {
-            return None;
+        match self.0 {
+            0 => None,
+            m => Some(m)
         }
-        Some(self.0)
     }
 }
 
@@ -31,8 +31,23 @@ mod tests {
     use super::*;
 
     #[test]
-    fn dec01_part1() {
-        let sum: usize = input_to_mass("dec1.txt")
+    fn test_mass_to_fuel() {
+        assert_eq!(mass_to_fuel(12), 2);
+        assert_eq!(mass_to_fuel(14), 2);
+        assert_eq!(mass_to_fuel(1969), 654);
+        assert_eq!(mass_to_fuel(100756), 33583);
+    }
+
+    #[test]
+    fn test_fuel_iterator() {
+        assert_eq!(FuelIterator(14).sum::<usize>(), 2);
+        assert_eq!(FuelIterator(1969).sum::<usize>(), 966);
+        assert_eq!(FuelIterator(100756).sum::<usize>(), 50346);
+    }
+
+    #[test]
+    fn part1() {
+        let sum: usize = input_to_mass("dec01.txt")
             .map(mass_to_fuel)
             .sum();
 
@@ -41,8 +56,8 @@ mod tests {
 
 
     #[test]
-    fn dec01_part2() {
-        let sum: usize = input_to_mass("dec1.txt")
+    fn part2() {
+        let sum: usize = input_to_mass("dec01.txt")
             .flat_map(|m| FuelIterator(m))
             .sum();
 
