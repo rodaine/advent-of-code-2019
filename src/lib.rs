@@ -6,6 +6,7 @@ use std::path::PathBuf;
 
 mod dec01;
 mod dec02;
+mod dec03;
 
 fn input_path(name: &str) -> PathBuf {
     let mut path = PathBuf::from("inputs");
