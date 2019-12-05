@@ -4,10 +4,13 @@ use std::io::BufReader;
 use std::fs::File;
 use std::path::PathBuf;
 
+mod computer;
+
 mod dec01;
 mod dec02;
 mod dec03;
 mod dec04;
+mod dec05;
 
 fn input_path(name: &str) -> PathBuf {
     let mut path = PathBuf::from("inputs");
