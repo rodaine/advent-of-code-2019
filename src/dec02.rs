@@ -2,8 +2,8 @@
 mod tests {
     use crate::computer::IntCodeComputer;
 
-    fn run_noun_verb(comp: &IntCodeComputer, noun: i64, verb: i64) -> i64 {
-        let mut comp = comp.clone();
+    fn run_noun_verb(comp: &mut IntCodeComputer, noun: i64, verb: i64) -> i64 {
+        comp.reset(vec![]);
         comp[1] = noun;
         comp[2] = verb;
         comp.run();
@@ -11,25 +11,18 @@ mod tests {
     }
 
     #[test]
-    fn part1() {
-        let comp = IntCodeComputer::from_input_file("dec02.txt", 0);
-        assert_eq!(run_noun_verb(&comp, 12, 2), 7_594_646);
+    fn parts_1_and_2() {
+        let mut comp = IntCodeComputer::from_input_file("dec02.txt", vec![]);
+        assert_eq!(run_noun_verb(&mut comp, 12, 2), 7_594_646);
+
+        const TARGET: i64 = 19_690_720;
+        assert_eq!(run_noun_verb(&mut comp, 33, 76), TARGET);
     }
 
     #[test]
     fn part2() {
         const TARGET: i64 = 19_690_720;
-        let comp = IntCodeComputer::from_input_file("dec02.txt", 0);
-
-        for noun in 0..100 {
-            for verb in 0..100 {
-                if run_noun_verb(&comp, noun, verb) == TARGET {
-                    assert_eq!(100 * noun + verb, 3376);
-                    return;
-                }
-            }
-        }
-
-        panic!("should have found a valid noun and verb");
+        let mut comp = IntCodeComputer::from_input_file("dec02.txt", vec![]);
+        assert_eq!(run_noun_verb(&mut comp, 33, 76,), TARGET);
     }
 }

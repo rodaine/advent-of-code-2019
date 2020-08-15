@@ -12,6 +12,7 @@ mod dec03;
 mod dec04;
 mod dec05;
 mod dec06;
+mod dec07;
 
 fn input_path(name: &str) -> PathBuf {
     let mut path = PathBuf::from("inputs");
